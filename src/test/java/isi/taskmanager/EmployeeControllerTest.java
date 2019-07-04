@@ -108,4 +108,21 @@ public class EmployeeControllerTest {
 
         assertThat("Powinno zwrócić null - brak pracowników", result, is(nullValue()));
     }
+
+    @Test
+    public void testGetEmployeeToTask() {
+        TaskModel taskModel = new TaskModel();
+        taskModel.setId(4L);
+        taskModel.setTime(2);
+
+        //Wywołaj testowaną metodę
+        List<EmployeeModel> result = employeeController.getEmployeeToTask(taskModel);
+
+        verify(taskRepository).findByTitle("Default");
+
+        assertThat("Wynikowa lista nie może być null", result, is(notNullValue()));
+        //Tylko jeden dostępny pracownik więc powinno go przydzielić
+        assertThat("Powinna mieć dokładnie jeden element", result.size(), is(1));
+        assertThat("Id musi być 2", result.get(0).getId(), is(2L));
+    }
 }
