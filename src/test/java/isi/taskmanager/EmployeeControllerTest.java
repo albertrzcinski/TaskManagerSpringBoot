@@ -38,6 +38,7 @@ public class EmployeeControllerTest {
         taskModels.add(taskModel);
         EmployeeModel employeeModel = new EmployeeModel("username","password","Albert","Trzcinski","Junior", taskModels.get(0));
         employeeModel.setId(2L);
+        employeeModel.setTimeForTask(2);
         ArrayList<EmployeeModel> employeeModels = new ArrayList<>();
         employeeModels.add(employeeModel);
 
@@ -111,17 +112,15 @@ public class EmployeeControllerTest {
 
     @Test
     public void testGetEmployeeToTask() {
-        TaskModel taskModel = new TaskModel();
-        taskModel.setId(4L);
-        taskModel.setTime(2);
-
+        TaskModel taskModel = new TaskModel("Game", "2019-08-19", "2019-08-20", "CDP Blue",
+                "Test", 1.0f);
         //Wywołaj testowaną metodę
         List<EmployeeModel> result = employeeController.getEmployeeToTask(taskModel);
 
         verify(taskRepository).findByTitle("Default");
 
         assertThat("Wynikowa lista nie może być null", result, is(notNullValue()));
-        //Tylko jeden dostępny pracownik więc powinno go przydzielić
+        //Tylko jeden dostępny pracownik (z TimeForTask = 2) więc powinno go przydzielić
         assertThat("Powinna mieć dokładnie jeden element", result.size(), is(1));
         assertThat("Id musi być 2", result.get(0).getId(), is(2L));
     }
