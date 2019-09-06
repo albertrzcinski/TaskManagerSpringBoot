@@ -13,7 +13,7 @@ spring:
           registration:
             facebook:
               clientId: 515442239020138
-              clientSecret: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+              clientSecret: fill the gap
               redirectUriTemplate: "{baseUrl}/oauth2/callback/{registrationId}"
               scope:
                 - email

@@ -55,6 +55,6 @@ INSERT INTO EMPLOYEE_MODEL VALUES(4,'l3rqeq2jag@ss.rw',FALSE,'Junior',NULL,NULL,
 INSERT INTO EMPLOYEE_MODEL VALUES(5,'rt123hljag@ss.rw',FALSE,'Mid',NULL,NULL,1.25E0,'empll3','e4','local',NULL,272.0E0,340.0E0,1.0E0,2)
 INSERT INTO EMPLOYEE_MODEL VALUES(6,'ah21jag@ss.a2',FALSE,NULL,NULL,NULL,0.0E0,'username','password','local',NULL,0.0E0,0.0E0,0.0E0,1)
 INSERT INTO EMPLOYEE_MODEL VALUES(7,'albert@int.pl',FALSE,NULL,NULL,NULL,0.0E0,'Albert','$2a$10$XF2qT8.nCNjphbZfVneTo.cC9DG8kBM9XBKtk5UtGe8FuWeCuJONa','local',NULL,0.0E0,0.0E0,0.0E0,NULL)
-INSERT INTO EMPLOYEE_MODEL VALUES(8,'albertrzcinski@gmail.com',FALSE,NULL,NULL,'https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2725166810845054&height=250&width=250&ext=1570288311&hash=AeRDWaCuC5T0zYfq',0.0E0,'Albert Trzci\u0144ski',NULL,'facebook','2725166810845054',0.0E0,0.0E0,0.0E0,NULL)
+INSERT INTO EMPLOYEE_MODEL VALUES(8,'albertrzcinski@gmail.com',FALSE,NULL,NULL,'https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2725166810845054&height=250&width=250&ext=1570375261&hash=AeRKRUlW2W3v7Hgm',0.0E0,'Albert Trzci\u0144ski',NULL,'facebook','2725166810845054',0.0E0,0.0E0,0.0E0,NULL)
 INSERT INTO TASK_MODEL VALUES(1,'CDP Red','Make a game for enthusiastic clients. Good luck, have fun :)','2019-08-22','2019-08-19',4.0E0,'Game')
 INSERT INTO TASK_MODEL VALUES(2,'','','','',0.0E0,'Default')
