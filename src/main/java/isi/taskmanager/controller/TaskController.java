@@ -5,6 +5,7 @@ import isi.taskmanager.model.TaskModel;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("task")
@@ -27,5 +28,10 @@ public class TaskController {
         this.taskRepository.save(taskModel);
 
         return this.taskRepository.findAll();
+    }
+
+    @GetMapping("/byId/{id}")
+    public Optional<TaskModel> getById(@PathVariable Long id){
+        return this.taskRepository.findById(id);
     }
 }

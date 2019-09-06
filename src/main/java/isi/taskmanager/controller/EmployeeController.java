@@ -2,14 +2,15 @@ package isi.taskmanager.controller;
 
 import isi.taskmanager.db.EmployeeRepository;
 import isi.taskmanager.db.TaskRepository;
+import isi.taskmanager.exception.ResourceNotFoundException;
 import isi.taskmanager.model.EmployeeModel;
 import isi.taskmanager.model.TaskModel;
+import isi.taskmanager.security.CurrentUser;
+import isi.taskmanager.security.UserPrincipal;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping("/employee")
@@ -24,6 +25,13 @@ public class EmployeeController {
         this.taskRepository = taskRepository;
     }
 
+    @GetMapping("/me")
+    @PreAuthorize("hasRole('USER')")
+    public EmployeeModel getCurrentUser(@CurrentUser UserPrincipal userPrincipal) {
+        return employeeRepository.findById(userPrincipal.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", userPrincipal.getId()));
+    }
+
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<EmployeeModel> getAll() {
         return this.employeeRepository.findAll();
@@ -34,6 +42,11 @@ public class EmployeeController {
         this.employeeRepository.save(employeeModel);
 
         return this.employeeRepository.findAll();
+    }
+
+    @GetMapping("/byId/{id}")
+    public Optional<EmployeeModel> getById(@PathVariable Long id){
+        return this.employeeRepository.findById(id);
     }
 
     @GetMapping("/byTask/{title}")
@@ -95,6 +108,10 @@ public class EmployeeController {
                 }
 
                 availableEmployeeList.removeAll(removeEmployeeList);
+
+                //If you want to save result to db
+                employeeRepository.saveAll(availableEmployeeList);
+
                 return availableEmployeeList;
             }
             else

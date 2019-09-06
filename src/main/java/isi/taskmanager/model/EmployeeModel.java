@@ -3,6 +3,8 @@ package isi.taskmanager.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class EmployeeModel {
@@ -12,20 +14,20 @@ public class EmployeeModel {
     private Long id;
 
     @Column(nullable = false)
-    private String username;
+    private String name;
 
-    @Column(nullable = false)
     private String password;
 
     @Column(nullable = false)
-    private String firstName;
+    @Email
+    private String email;
+
+    private String imageUrl;
 
     @Column(nullable = false)
-    private String lastName;
+    private Boolean emailVerified = false;
 
-    @Column(nullable = false)
     private String expLevel;
-
     private float salary = 0;
     private String hireFrom;
     private float timeForTask = 0;
@@ -33,34 +35,39 @@ public class EmployeeModel {
     private float multiply = 0.0f;
     private float realCostPerHour = 0.0f;
 
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private AuthProvider provider;
+
+    private String providerId;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     private TaskModel taskModel;
 
     public EmployeeModel(){}
 
-    public EmployeeModel(String username, String password, String firstName,
-                         String lastName, String expLevel, TaskModel taskModel) {
-        this.username = username;
+    public EmployeeModel(String name, String password, String email,
+                          TaskModel taskModel, AuthProvider provider) {
+        this.name = name;
         this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.expLevel = expLevel;
+        this.email = email;
         this.taskModel = taskModel;
+        this.provider = provider;
 
         this.setMultiply();
     }
 
-    public EmployeeModel(String username, String password, String firstName,
-                         String lastName, String expLevel, float timeForTask, float salary, TaskModel taskModel) {
-        this.username = username;
+    public EmployeeModel(String name, String password, String email,
+                         String expLevel, float timeForTask, float salary, TaskModel taskModel, AuthProvider provider) {
+        this.name = name;
         this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.email = email;
         this.expLevel = expLevel;
         this.taskModel = taskModel;
         this.timeForTask = timeForTask;
         this.salary = salary;
+        this.provider = provider;
 
         this.setMultiply();
     }
@@ -81,12 +88,12 @@ public class EmployeeModel {
         this.taskModel = taskModel;
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {
@@ -95,22 +102,6 @@ public class EmployeeModel {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getExpLevel() {
@@ -156,16 +147,18 @@ public class EmployeeModel {
     }
 
     private void setMultiply(){
-        switch (this.expLevel) {
-            case "Junior":
-                this.multiply = 1.0f;
-                break;
-            case "Mid":
-                this.multiply = 1.25f;
-                break;
-            case "Senior":
-                this.multiply = 1.5f;
-                break;
+        if (this.expLevel!=null) {
+            switch (this.expLevel) {
+                case "Junior":
+                    this.multiply = 1.0f;
+                    break;
+                case "Mid":
+                    this.multiply = 1.25f;
+                    break;
+                case "Senior":
+                    this.multiply = 1.5f;
+                    break;
+            }
         }
     }
 
@@ -179,5 +172,45 @@ public class EmployeeModel {
 
     public void setRealCostPerHour(float realCost) {
         this.realCostPerHour = realCost;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public Boolean getEmailVerified() {
+        return emailVerified;
+    }
+
+    public void setEmailVerified(Boolean emailVerified) {
+        this.emailVerified = emailVerified;
+    }
+
+    public AuthProvider getProvider() {
+        return provider;
+    }
+
+    public void setProvider(AuthProvider provider) {
+        this.provider = provider;
+    }
+
+    public String getProviderId() {
+        return providerId;
+    }
+
+    public void setProviderId(String providerId) {
+        this.providerId = providerId;
     }
 }
