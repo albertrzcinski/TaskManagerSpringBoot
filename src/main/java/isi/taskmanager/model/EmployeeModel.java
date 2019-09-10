@@ -35,6 +35,9 @@ public class EmployeeModel {
     private float multiply = 0.0f;
     private float realCostPerHour = 0.0f;
 
+    private boolean isAdmin = false;
+    private boolean isFreeVersion = true;
+
     @NotNull
     @Enumerated(EnumType.STRING)
     private AuthProvider provider;
@@ -212,5 +215,21 @@ public class EmployeeModel {
 
     public void setProviderId(String providerId) {
         this.providerId = providerId;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
+    }
+
+    public boolean isFreeVersion() {
+        return isFreeVersion;
+    }
+
+    public void setFreeVersion(boolean freeVersion) {
+        isFreeVersion = freeVersion;
     }
 }

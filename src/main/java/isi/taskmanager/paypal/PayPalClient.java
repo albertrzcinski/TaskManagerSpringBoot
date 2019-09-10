@@ -14,8 +14,8 @@ import java.util.Map;
 @Component
 public class PayPalClient {
 
-    String clientId = "fill the gap";
-    String clientSecret = "fill the gap";
+    String clientId = ""; //TODO fill the gap
+    String clientSecret = "";//TODO fill the gap
 
     public Map<String, Object> createPayment(String sum){
         Map<String, Object> response = new HashMap<String, Object>();
