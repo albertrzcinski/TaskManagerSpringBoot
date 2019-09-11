@@ -1,0 +1,8 @@
+spring.datasource.url=jdbc:hsqldb:file:./taskmanager.db
+spring.jpa.hibernate.ddl-auto=update
+manager.db.recreate=true
+
+spring.security.oauth2.client.registration.facebook.client-id=515442239020138
+spring.security.oauth2.client.registration.facebook.client-secret=85c95f37aace0dff6bd6204ba3e43299
+spring.security.oauth2.client.registration.facebook.redirect-uri-template="{baseUrl}/oauth2/callback/{registrationId}"
+
