@@ -3,6 +3,7 @@ package isi.taskmanager;
 import isi.taskmanager.controller.EmployeeController;
 import isi.taskmanager.db.EmployeeRepository;
 import isi.taskmanager.db.TaskRepository;
+import isi.taskmanager.model.AuthProvider;
 import isi.taskmanager.model.EmployeeModel;
 import isi.taskmanager.model.TaskModel;
 import org.junit.Before;
@@ -36,9 +37,9 @@ public class EmployeeControllerTest {
         taskModel.setId(1L);
         ArrayList<TaskModel> taskModels = new ArrayList<>();
         taskModels.add(taskModel);
-        EmployeeModel employeeModel = new EmployeeModel("username","password","Albert","Trzcinski","Junior", taskModels.get(0));
+        EmployeeModel employeeModel = new EmployeeModel("empl1", "e1", "l3rqeq2jag@ss.rw",
+                "Junior",2, 170, taskModels.get(0), AuthProvider.local);
         employeeModel.setId(2L);
-        employeeModel.setTimeForTask(2);
         ArrayList<EmployeeModel> employeeModels = new ArrayList<>();
         employeeModels.add(employeeModel);
 
