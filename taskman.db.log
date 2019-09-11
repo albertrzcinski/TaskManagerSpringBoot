@@ -1,3 +1,3 @@
-/*C44*/SET SCHEMA PUBLIC
+/*C3*/SET SCHEMA PUBLIC
 alter table users drop constraint UK6dotkott2kjsp8vw4d0m25fb7
 alter table users add constraint UK6dotkott2kjsp8vw4d0m25fb7 unique (email)
